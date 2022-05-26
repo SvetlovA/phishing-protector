@@ -29,9 +29,7 @@ public class HtmlFileProcessorFactory : IProcessorFactory
         return _dataLocations.Select(x => new Processor<HtmlDocument>(
             new HtmlDataProvider(x.SourceDirectory),
             new HtmlPhishingDetector(),
-            new HtmlDataManager(
-                x.SourceDirectory,
-                x.DestinationDirectory),
+            new HtmlDataManager(x.SourceDirectory, x.DestinationDirectory),
             _loggerFactory.CreateLogger<Processor<HtmlDocument>>()));
     }
 }

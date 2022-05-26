@@ -24,11 +24,17 @@ public class HtmlDataManager : IDataManager<HtmlDocument>
 
     public async Task SaveDataToDestinationAsync(DataEntity<HtmlDocument> data, CancellationToken cancellationToken = default)
     {
-        if (!Directory.Exists(_destinationDirectory))
+        var fullPath = Path.Combine(_destinationDirectory, data.Name);
+        var directoryName = Path.GetDirectoryName(fullPath);
+
+        if (!string.IsNullOrEmpty(directoryName))
         {
-            Directory.CreateDirectory(_destinationDirectory);
+            Directory.CreateDirectory(directoryName);
         }
 
-        await File.WriteAllTextAsync(Path.Combine(_destinationDirectory, data.Name), data.Content.Text, cancellationToken);
+        await File.WriteAllTextAsync(
+            fullPath,
+            data.Content.Text,
+            cancellationToken);
     }
 }

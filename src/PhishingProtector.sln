@@ -5,7 +5,9 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhishingProtector.Service", "PhishingProtector.Service\PhishingProtector.Service.csproj", "{60F9D917-DB06-4DDB-A06A-7796985B6BFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhisihingProtector.Business", "PhisihingProtector.Business\PhisihingProtector.Business.csproj", "{E0EF25B9-4E08-43F1-9C92-D97EF6BCBDA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhisihingProtector.Business", "PhisihingProtector.Business\PhisihingProtector.Business.csproj", "{E0EF25B9-4E08-43F1-9C92-D97EF6BCBDA1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhisihingProtector.Business.UnitTests", "PhisihingProtector.Business.UnitTests\PhisihingProtector.Business.UnitTests.csproj", "{D95D75FF-75AF-4D70-8D87-01DB4DBB0138}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E0EF25B9-4E08-43F1-9C92-D97EF6BCBDA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0EF25B9-4E08-43F1-9C92-D97EF6BCBDA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0EF25B9-4E08-43F1-9C92-D97EF6BCBDA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D95D75FF-75AF-4D70-8D87-01DB4DBB0138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D95D75FF-75AF-4D70-8D87-01DB4DBB0138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D95D75FF-75AF-4D70-8D87-01DB4DBB0138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D95D75FF-75AF-4D70-8D87-01DB4DBB0138}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

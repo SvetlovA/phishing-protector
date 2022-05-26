@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using HtmlAgilityPack;
@@ -28,21 +29,22 @@ public class HtmlDataProvider : IDataProvider<HtmlDocument>
 
         while (!cancellationToken.IsCancellationRequested)
         {
-            foreach (var htmlFilePattern in HtmlFilePatterns)
+            var allFilesEnumerable = HtmlFilePatterns.SelectMany(x =>
+                Directory.EnumerateFiles(_sourceFilesDirectoryPath, x, SearchOption.AllDirectories));
+
+            foreach (var file in allFilesEnumerable)
             {
-                foreach (var file in Directory.EnumerateFiles(_sourceFilesDirectoryPath, htmlFilePattern, SearchOption.AllDirectories))
+                var fileContent = await File.ReadAllTextAsync(file, cancellationToken);
+                var htmlDocument = new HtmlDocument();
+
+                htmlDocument.LoadHtml(fileContent);
+
+                yield return new DataEntity<HtmlDocument>
                 {
-                    var fileContent = await File.ReadAllTextAsync(file, cancellationToken);
-                    var htmlDocument = new HtmlDocument();
-
-                    htmlDocument.LoadHtml(fileContent);
-
-                    yield return new DataEntity<HtmlDocument>
-                    {
-                        Name = Path.GetFileName(file),
-                        Content = htmlDocument
-                    };
-                }
+                    Name = file.Replace(_sourceFilesDirectoryPath, string.Empty)
+                        .Trim(Path.DirectorySeparatorChar),
+                    Content = htmlDocument
+                };
             }
         }
     }
